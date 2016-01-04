@@ -1,5 +1,21 @@
 from gi.repository import Gtk
 
+
+TRACKS_FIXTURE = [
+    (False, 'First Track', '2:23', True),
+    (False, 'Second Track', '2:00', True),
+    (False, 'Third Track', '3:42', True),
+    (False, 'Fourth Track', '2:00', True),
+    (False, 'Fifth Track', '4:50', True),
+    (False, 'Sixth Track', '3:31', True),
+    (True, 'Seventh Track', '2:40', False),
+    (False, 'Eighth Track', '3:45', False),
+    (False, 'Ninth Track', '4:00', False),
+    (False, 'Tenth Track', '2:50', False),
+    (False, 'Eleventh Track', '3:44', False),
+]
+
+
 class App:
 
     def __init__(self):
@@ -18,6 +34,21 @@ class App:
 
         self.popover = self.builder_popover.get_object('popover')
         self.popover.set_relative_to(self.button)
+
+        self.track_list = self.builder_popover.get_object('track_list')
+        self.__populate_playlist()
+
+    def __populate_playlist(self):
+        for now_playing, track, time, played in TRACKS_FIXTURE:
+            row = Gtk.ListBoxRow()
+            label = Gtk.Label('{track} {time}'.format(
+                track=track,
+                time=time,
+            ))
+            row.add(label)
+            self.track_list.add(row)
+            self.track_list.show_all()
+
 
     def on_clicked_button(self, button):
         if self.popover.get_visible():
