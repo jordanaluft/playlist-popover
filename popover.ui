@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- interface-requires gtk+ 3.14 -->
+<interface>
+  <object class="GtkPopover" id="popover">
+    <property name="visible">False</property>
+    <property name="can_focus">True</property>
+    <child>
+      <object class="GtkLabel" id="label1">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="label">Example</property>
+      </object>
+    </child>
+  </object>
+</interface>
