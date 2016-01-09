@@ -41,23 +41,37 @@ class App:
     def __populate_playlist(self):
         for playing, track, time, played in TRACKS_FIXTURE:
             row = Gtk.ListBoxRow()
-            label = Gtk.Label()
-            text = '   {track:50}{time}'.format(
-                track=track,
-                time=time,
-            )
+            box_track = Gtk.Box()
+            row.add(box_track)
+
+            track_label = Gtk.Label()
+            time_label = Gtk.Label()
+
 
             if played:
-                label.set_markup('<span color="grey">{}</span>'.format(text))
+                padding = 16
+                track_label.set_markup('<span color="grey">{}</span>'.format(track))
+                time_label.set_markup('<span color="grey">{}</span>'.format(time))
             elif playing:
-                label.set_label('P' + text[2:])
+                padding = 0
+                image = Gtk.Image.new_from_icon_name('media-playback-start', 1)
+                box_track.pack_start(image, False, False, 0)
+                track_label.set_label(track)
+                time_label.set_label(time)
             else:
-                label.set_label(text)
+                padding = 16
+                track_label.set_label(track)
+                time_label.set_label(time)
 
-            label.set_xalign(0)
-            row.add(label)
+            box_track.pack_start(track_label, False, False, padding)
+            box_track.reorder_child(track_label, 1)
+            box_track.pack_end(time_label, False, False, 20)
+            box_track.reorder_child(time_label, 2)
+
+
             self.track_list.add(row)
             self.track_list.show_all()
+
 
     def on_clicked_button(self, button):
         if self.popover.get_visible():
