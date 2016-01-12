@@ -26,16 +26,13 @@ class App:
         self.window.show_all()
         self.window.connect('delete-event', Gtk.main_quit)
 
-        self.button = self.builder.get_object('button')
+        self.button = self.builder.get_object('nowplaying_button')
         self.button.connect('clicked', self.on_clicked_button)
 
-        self.builder_popover = Gtk.Builder()
-        self.builder_popover.add_from_file('popover.ui')
-
-        self.popover = self.builder_popover.get_object('popover')
+        self.popover = self.builder.get_object('popover')
         self.popover.set_relative_to(self.button)
 
-        self.track_list = self.builder_popover.get_object('track_list')
+        self.track_list = self.builder.get_object('track_list')
         self.__populate_playlist()
 
     def __populate_playlist(self):
@@ -46,7 +43,6 @@ class App:
 
             track_label = Gtk.Label()
             time_label = Gtk.Label()
-
 
             if played:
                 padding = 16
@@ -68,10 +64,8 @@ class App:
             box_track.pack_end(time_label, False, False, 20)
             box_track.reorder_child(time_label, 2)
 
-
             self.track_list.add(row)
             self.track_list.show_all()
-
 
     def on_clicked_button(self, button):
         if self.popover.get_visible():
