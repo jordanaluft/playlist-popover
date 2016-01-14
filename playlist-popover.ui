@@ -22,9 +22,11 @@
     <property name="can_focus">False</property>
     <property name="icon_name">media-playback-start</property>
   </object>
+
+  <!-- Start Popover -->
+
   <object class="GtkPopover" id="popover">
-    <property name="visible">False</property>
-    <property name="can_focus">True</property>
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox" id="box_main">
         <property name="visible">True</property>
@@ -49,6 +51,7 @@
           <object class="GtkBox" id="box_content">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="homogeneous">True</property>
             <child>
               <object class="GtkBox" id="box_left_content">
                 <property name="visible">True</property>
@@ -161,31 +164,31 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="padding">41</property>
+                <property name="padding">40</property>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="box_right_content">
+              <object class="GtkScrolledWindow" id="scrolledwindow1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkListBox" id="track_list">
+                  <object class="GtkViewport" id="viewport1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkListBox" id="track_list">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">False</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="padding">20</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -199,6 +202,9 @@
       </object>
     </child>
   </object>
+
+  <!-- End Popover-->
+
   <object class="GtkWindow" id="window">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Music</property>

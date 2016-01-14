@@ -13,6 +13,13 @@ TRACKS_FIXTURE = [
     (False, 'Ninth Track', '4:00', False),
     (False, 'Tenth Track', '2:50', False),
     (False, 'Eleventh Track', '3:44', False),
+    (False, 'Fifth Track', '4:50', True),
+    (False, 'Sixth Track', '3:31', True),
+    (True, 'Seventh Track', '2:40', False),
+    (False, 'Eighth Track', '3:45', False),
+    (False, 'Ninth Track', '4:00', False),
+    (False, 'Tenth Track', '2:50', False),
+    (False, 'Eleventh Track', '3:44', False)
 ]
 
 
