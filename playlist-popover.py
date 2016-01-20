@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+from random import randint
 
 
 TRACKS_FIXTURE = [
@@ -42,6 +43,14 @@ class App:
         self.track_list = self.builder.get_object('track_list')
         self.__populate_playlist()
 
+        self.stack = self.builder.get_object('stack3')
+
+        self.button.connect('clicked', self.on_clicked_stack)
+
+        self.box2 = self.builder.get_object('box2')
+        self.box1 = self.builder.get_object('box1')
+        self.box_content = self.builder.get_object('box_content')
+
     def __populate_playlist(self):
         for playing, track, time, played in TRACKS_FIXTURE:
             row = Gtk.ListBoxRow()
@@ -82,6 +91,15 @@ class App:
 
     def start(self):
         Gtk.main()
+
+    def on_clicked_stack(self, button):
+        value = randint(0, 2)
+        if value == 0:
+            self.stack.set_visible_child(self.box2)
+        if value == 1:
+            self.stack.set_visible_child(self.box1)
+        if value == 2:
+            self.stack.set_visible_child(self.box_content)
 
 
 def main():
